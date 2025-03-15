@@ -2,17 +2,20 @@ import speech_recognition as sr
 
 r = sr.Recognizer()
 
-while True: 
-  try: 
-      with sr.Microphones() as source: 
-    print("ask something")
-    audio = r.Listen(source)
-    text = r.recognize_google(audio)
-    text = text.lower()
+while True:
+    try:
+        with sr.Microphone() as source:  # Fixed function name
+            print("Say something, good")
+            
+            r.adjust_for_ambient_noise(source, duration=1)  # Reduce background noise
+            audio = r.listen(source)  # Fixed method name
+            
+            text = r.recognize_google(audio)
+            text = text.lower()
 
-    print(f"Recognized text : {text}")
+            print(f"Recognized text: {text}")
 
-except: 
-  print("Your were trying to be funny")
-  r = sr.Recognizer()
-  continue
+    except Exception as e:  # More specific exception handling
+        print(f"Error: {e}")  # Print the actual error for debugging
+        r = sr.Recognizer()  # Reinitialize recognizer
+        continue  # Continue the loop
