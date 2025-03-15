@@ -6,11 +6,11 @@ from tkinter import scrolledtext
 import threading #pip install thread
 from apikey import api_data
 
+ 
 
+GENAI_API_KEY ="AIzaSyAy9Ec_6v2zBjNnwO5F6ftWWxodgfrlgkQ"
 
-
-genai.configure(api_key="AIzaSyAy9Ec_6v2zBjNnwO5F6ftWWxodgfrlgkQ")
-
+genai.configure(api_key=GENAI_API_KEY)
 #Text-to-Speech engine
 engine = pyttsx3.init('sapi5')
 engine.setProperty('voice', engine.getProperty('voices')[0].id)
